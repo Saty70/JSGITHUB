@@ -1,72 +1,82 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
     <title>Bill Calculator</title>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
 </head>
 <body>
-    <h1>Bill Calculator</h1>
+    <div class="container">
+        <div class="glass">
+
+            <h1>Bill Calculator</h1>
+        <div class="inputdata">
+
+            <form id="BillForm">
     
-    <form id="BillForm">
+                <label for="Sunit">Satyam (units):</label>
+                <input type="number" id="Sunit" name="Sunit" required>
+                <br>
+                <label for="Runit">Rupam (units):</label>
+                <input type="number" id="Runit" name="Runit" required>
+                <br>
+                <label for="Aunit">Aviral (units):</label>
+                <input type="number" id="Aunit" name="Aunit" required>
+                <br>
+                <label for="Iunit">Sarang (units):</label>
+                <input type="number" id="Iunit" name="Iunit" required>
+                <br>
+        
+        
+                <label for="Totunit">Total Energy consumption (units):</label>
+                <input type="number" id="Totunit" name="Totunit" required>
+                <br>
+        
+        
+                <label for="Tbill">Total bill amount (₹):</label>
+                <input type="number" id="Tbill" name="Tbill" required>
+                <br>
+        
+        
+                <button type="button" id="calculateButton" onclick="calculateSum()" disabled>Calculate Sum</button>
+            <button type="button" id="exportButton" onclick="confirmExportTableAsImage()" disabled>Export Table as Image</button>
+        
+            </form>
+            <div class="tabledata">
 
-        <label for="Sunit">Satyam (units):</label>
-        <input type="number" id="Sunit" name="Sunit" required>
-        <br>
-        <label for="Runit">Rupam (units):</label>
-        <input type="number" id="Runit" name="Runit" required>
-        <br>
-        <label for="Aunit">Aviral (units):</label>
-        <input type="number" id="Aunit" name="Aunit" required>
-        <br>
-        <label for="Iunit">Sarang (units):</label>
-        <input type="number" id="Iunit" name="Iunit" required>
-        <br>
-
-
-        <label for="Totunit">Total Energy consumption (units):</label>
-        <input type="number" id="Totunit" name="Totunit" required>
-        <br>
-
-
-        <label for="Tbill">Total bill amount (₹):</label>
-        <input type="number" id="Tbill" name="Tbill" required>
-        <br>
-
-
-        <button type="button" id="calculateButton" onclick="calculateSum()" disabled>Calculate Sum</button>
-	<button type="button" id="exportButton" onclick="confirmExportTableAsImage()" disabled>Export Table as Image</button>
-
-    </form>
-
-  <p id="result"></p>
-
-    <table>
-        <tr>
-            <th>Name&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th>
-            <th>Bill Amount (₹)&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th>
-            <th>Units</th>
-        </tr>
-        <tr>
-            <td>Satyam</td>
-            <td id="PchargeS"></td>
-            <td id="S"></td>
-        </tr>
-        <tr>
-            <td>Rupam</td>
-            <td id="PchargeR"></td>
-            <td id="R"></td>
-        </tr>
-        <tr>
-            <td>Aviral</td>
-            <td id="PchargeA"></td>
-            <td id="A"></td>
-        </tr>
-        <tr>
-            <td>Sarang</td>
-            <td id="PchargeI"></td>
-            <td id="I"></td>
-        </tr>
-    </table>
+                <table>
+                    <tr>
+                        <th>Name&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th>
+                        <th>Bill Amount (₹)&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th>
+                        <th>Units</th>
+                    </tr>
+                    <tr>
+                        <td>Satyam</td>
+                        <td id="PchargeS"></td>
+                        <td id="S"></td>
+                    </tr>
+                    <tr>
+                        <td>Rupam</td>
+                        <td id="PchargeR"></td>
+                        <td id="R"></td>
+                    </tr>
+                    <tr>
+                        <td>Aviral</td>
+                        <td id="PchargeA"></td>
+                        <td id="A"></td>
+                    </tr>
+                    <tr>
+                        <td>Sarang</td>
+                        <td id="PchargeI"></td>
+                        <td id="I"></td>
+                    </tr>
+                </table>
+            </div>
+            <p id="result"></p>
+        </div>   
+        </div>
+    </div>
+   
 
     
     <script>

@@ -1,0 +1,104 @@
+body {
+    max-width: 100%;
+    background-color: midnightblue;
+    color: coral;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    position: absolute;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    top: 50%;   
+    left : 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 5%;
+    width: 40%;
+    background-image: url("https://wallpapers.com/images/featured-full/electricity-pycs4h1vy7env7tq.jpg");
+}
+
+.container h1{
+    text-align: center;
+    font-weight: bold;
+}
+
+.container label{
+    text-align: left;
+    margin: 1%;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+}
+
+.glass{
+    padding: 5%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1),rgba(255,255,255,0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border:1px solid rgba(255,255,255,0.18);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.37);
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 4px;
+    margin-bottom: 2px;
+    border: none;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: black;
+    font-weight: bold;
+}
+
+button {
+    background-color: rgb(75, 0, 203);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:disabled {
+    background-color: rgb(79, 79, 123);
+    cursor: not-allowed;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: none;
+}
+
+th, td {
+    padding: 4px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+th {
+    background-color: rgba(0, 45, 150, 0.3);
+}
+
+td {
+    background-color: rgba(0, 0, 33, 0.1);
+}
+
+#result {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+@media screen and (max-width: 600px) {
+
+}
