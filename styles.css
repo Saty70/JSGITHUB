@@ -8,14 +8,13 @@ body {
 }
 
 .container{
-    position: absolute;
+    max-width: 40%;
     margin-top: 5%;
-    margin-bottom: 5%;
-    top: 50%;   
-    left : 50%;
-    transform: translate(-50%,-50%);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px;
     border-radius: 5%;
-    width: 40%;
+    box-sizing:content-box;
     background-image: url("https://wallpapers.com/images/featured-full/electricity-pycs4h1vy7env7tq.jpg");
 }
 
@@ -99,6 +98,31 @@ td {
     margin-top: 20px;
 }
 
+.credits
+{
+    margin-top: 2%;
+    margin-bottom: 15%;
+    padding: 5%;
+
+}
+
+.credits p{
+    width: fit-content;
+    color:rosybrown;
+    font-family: Arial, sans-serif;
+    margin:auto;
+    text-align: right;
+    font-size: xx-small;
+  }
+  
+  .credits p:hover{
+    font-size: larger;
+  }
+
 @media screen and (max-width: 600px) {
+
+    .container {
+        width: 80%;
+    }
 
 }
