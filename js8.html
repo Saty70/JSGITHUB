@@ -33,8 +33,8 @@
         <br>
 
 
-        <button type="button" onclick="calculateSum()">Calculate Sum</button>
-	<button type="button" onclick="confirmExportTableAsImage()">Export Table as Image</button>
+        <button type="button" id="calculateButton" onclick="calculateSum()" disabled>Calculate Sum</button>
+	<button type="button" id="exportButton" onclick="confirmExportTableAsImage()" disabled>Export Table as Image</button>
 
     </form>
 
@@ -70,6 +70,27 @@
 
     
     <script>
+	const calculateButton = document.getElementById("calculateButton");
+        const requiredFields = document.querySelectorAll("#BillForm [required]");
+
+        for (const field of requiredFields) {
+            field.addEventListener("input", checkFields);
+        }
+
+        function checkFields() {
+            let allFieldsFilled = true;
+
+            for (const field of requiredFields) {
+                if (!field.value) {
+                    allFieldsFilled = false;
+                    break;
+                }
+            }
+
+            calculateButton.disabled = !allFieldsFilled;
+        }
+
+
         function calculateSum() {
             const Sunit = parseFloat(document.getElementById("Sunit").value);
             const Runit = parseFloat(document.getElementById("Runit").value);
@@ -80,9 +101,11 @@
 
             const sum = Sunit + Runit + Aunit + Iunit;
             document.getElementById("result").textContent = sum;
+	 const exportButton = document.getElementById("exportButton");
 
 	if(sum==Totunit)
 	{
+	exportButton.disabled = false;
             let PunitS = Punit(Sunit,Totunit);
             let PunitR = Punit(Runit,Totunit);
             let PunitA = Punit(Aunit,Totunit);
@@ -104,7 +127,17 @@
             document.getElementById("I").textContent = Iunit;
 	}
 	else{
+	 exportButton.disabled = true;
         document.getElementById("result").innerHTML = "Sum of individual and total consumption in units are not equal";
+            document.getElementById("PchargeS").textContent = 0;
+            document.getElementById("PchargeR").textContent = 0;
+            document.getElementById("PchargeA").textContent = 0;
+            document.getElementById("PchargeI").textContent = 0;
+
+            document.getElementById("S").textContent = 0;
+            document.getElementById("R").textContent = 0;
+            document.getElementById("A").textContent = 0;
+            document.getElementById("I").textContent = 0;	
 	}
 
         }
