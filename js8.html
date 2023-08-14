@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bill Calculator</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+</head>
+<body>
+    <h1>Bill Calculator</h1>
+    
+    <form id="BillForm">
+
+        <label for="Sunit">Satyam (units):</label>
+        <input type="number" id="Sunit" name="Sunit" required>
+        <br>
+        <label for="Runit">Rupam (units):</label>
+        <input type="number" id="Runit" name="Runit" required>
+        <br>
+        <label for="Aunit">Aviral (units):</label>
+        <input type="number" id="Aunit" name="Aunit" required>
+        <br>
+        <label for="Iunit">Sarang (units):</label>
+        <input type="number" id="Iunit" name="Iunit" required>
+        <br>
+
+
+        <label for="Totunit">Total Energy consumption (units):</label>
+        <input type="number" id="Totunit" name="Totunit" required>
+        <br>
+
+
+        <label for="Tbill">Total bill amount (₹):</label>
+        <input type="number" id="Tbill" name="Tbill" required>
+        <br>
+
+
+        <button type="button" onclick="calculateSum()">Calculate Sum</button>
+	<button type="button" onclick="confirmExportTableAsImage()">Export Table as Image</button>
+
+    </form>
+
+  <p id="result"></p>
+
+    <table>
+        <tr>
+            <th>Name&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th>
+            <th>Bill Amount (₹)&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th>
+            <th>Units</th>
+        </tr>
+        <tr>
+            <td>Satyam</td>
+            <td id="PchargeS"></td>
+            <td id="S"></td>
+        </tr>
+        <tr>
+            <td>Rupam</td>
+            <td id="PchargeR"></td>
+            <td id="R"></td>
+        </tr>
+        <tr>
+            <td>Aviral</td>
+            <td id="PchargeA"></td>
+            <td id="A"></td>
+        </tr>
+        <tr>
+            <td>Sarang</td>
+            <td id="PchargeI"></td>
+            <td id="I"></td>
+        </tr>
+    </table>
+
+    
+    <script>
+        function calculateSum() {
+            const Sunit = parseFloat(document.getElementById("Sunit").value);
+            const Runit = parseFloat(document.getElementById("Runit").value);
+            const Aunit = parseFloat(document.getElementById("Aunit").value);
+            const Iunit = parseFloat(document.getElementById("Iunit").value);
+            const Totunit = parseFloat(document.getElementById("Totunit").value);
+            const Tbill = parseFloat(document.getElementById("Tbill").value);
+
+            const sum = Sunit + Runit + Aunit + Iunit;
+            document.getElementById("result").textContent = sum;
+
+	if(sum==Totunit)
+	{
+            let PunitS = Punit(Sunit,Totunit);
+            let PunitR = Punit(Runit,Totunit);
+            let PunitA = Punit(Aunit,Totunit);
+            let PunitI = Punit(Iunit,Totunit);
+
+            let PchargeS = Pcharge(PunitS,Tbill);
+            let PchargeR = Pcharge(PunitR,Tbill);
+            let PchargeA = Pcharge(PunitA,Tbill);
+            let PchargeI = Pcharge(PunitI,Tbill);
+
+            document.getElementById("PchargeS").textContent = PchargeS.toFixed(2);
+            document.getElementById("PchargeR").textContent = PchargeR.toFixed(2);
+            document.getElementById("PchargeA").textContent = PchargeA.toFixed(2);
+            document.getElementById("PchargeI").textContent = PchargeI.toFixed(2);
+
+            document.getElementById("S").textContent = Sunit;
+            document.getElementById("R").textContent = Runit;
+            document.getElementById("A").textContent = Aunit;
+            document.getElementById("I").textContent = Iunit;
+	}
+	else{
+        document.getElementById("result").innerHTML = "Sum of individual and total consumption in units are not equal";
+	}
+
+        }
+
+        function Punit(a,b){
+		if(b==0){
+			return "division by zero";
+		}
+		return a/b ;
+	}
+function Pcharge(c,d){
+		return c*d ;
+	}
+
+
+        function confirmExportTableAsImage() {
+            if (confirm("Are you sure you want to export the table as an image?")) {
+                exportTableAsImage();
+            }
+        }
+        
+        function exportTableAsImage() {
+            const table = document.querySelector("table");
+            
+            html2canvas(table).then(canvas => {
+                const newCanvas = document.createElement("canvas");
+                const context = newCanvas.getContext("2d");
+            
+                // Set the canvas dimensions to match the captured canvas
+                newCanvas.width = canvas.width;
+                newCanvas.height = canvas.height;
+            
+                // Draw a white background
+                context.fillStyle = "#ffffff";
+                context.fillRect(0, 0, newCanvas.width, newCanvas.height);
+            
+                // Draw the captured canvas on top of the white background
+                context.drawImage(canvas, 0, 0);
+            
+                // Convert the new canvas to an image
+                const image = newCanvas.toDataURL("image/png");
+            
+                // Create a download link
+                const link = document.createElement("a");
+                link.href = image;
+                link.download = "table_image.png";
+                link.click();
+            });
+        }
+
+
+    </script>
+</body>
+</html>
